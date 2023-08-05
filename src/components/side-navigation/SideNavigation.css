@@ -1,0 +1,17 @@
+.sideNavigation {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    width: 481px;
+    background: #fff;
+    height: calc(100vh - 50px);
+    top: 50px;
+    left: -481px;
+    transition: all 400ms ease;
+    z-index: 999;
+}
+
+.sideNavigationOpen {
+    left: 0;
+    border-right: 1px solid #000;
+}

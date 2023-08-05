@@ -1,0 +1,21 @@
+.navButton {
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-right: 1px solid #000;
+    width: 160px;
+    color: #000;
+    font-family: "Acumin Pro";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 2px;
+}
+
+.navButton:hover {
+    text-decoration: underline;
+}

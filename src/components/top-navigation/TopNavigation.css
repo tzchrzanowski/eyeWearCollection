@@ -1,0 +1,41 @@
+.topNavigation {
+    color: black;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    border: 1px solid #000;
+    background-color: #fff;
+    box-sizing: border-box;
+    flex-direction: row;
+}
+
+.navButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.navButton:first-child {
+    border-left: 1px solid #000;
+}
+
+.navLogo {
+    min-width: 200px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+    color: #002fa7;
+}
+
+.svgElement {
+    height: 50%;
+}
