@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import './CollectionMainView.css'
 import {CollectionHeader} from "./collection-header/CollectionHeader";
 import {getSimpleCollection} from "data/apiRequests";
 import {Colours, Shapes, Gender, EyewearType} from "data/CustomTypes";
+import {ButtonClickContext} from "helpers/ButtonClickProvider";
+import {Simulate} from "react-dom/test-utils";
+import click = Simulate.click;
 
 export function CollectionMainView () {
     // setting up default params for initial eye-wear collection api call
@@ -24,6 +27,22 @@ export function CollectionMainView () {
         eyewear_type: eyewearTypeState
     }
 
+    /*
+     * Initial apiCall triggered automatically when Home component renders
+     */
+    React.useEffect(() => {
+        dataFetch();
+    }, []);
+
+    const contextValue = useContext(ButtonClickContext);
+    if (!contextValue) {
+        return <div>Loading...</div>
+    }
+    const {clickedButton} = contextValue;
+    if(contextValue) {
+        console.log("clicked button: ", clickedButton)
+    }
+
     const dataFetch = async () => {
         try {
             const data = await getSimpleCollection(defaultSearchParams);
@@ -33,16 +52,10 @@ export function CollectionMainView () {
         }
     }
 
-    /*
-     * Initial apiCall triggered automatically when Home component renders
-     */
-    React.useEffect(() => {
-        dataFetch();
-    }, []);
-
     return (
         <div className={"collectionWrapper"}>
             <CollectionHeader type={eyewearTypeState} gender={genderState}/>
+            <p>last clicked button: {clickedButton}</p>
         </div>
     )
 }

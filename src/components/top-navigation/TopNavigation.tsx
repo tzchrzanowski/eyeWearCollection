@@ -3,7 +3,6 @@ import './TopNavigation.css';
 import BloobloomLogo from 'resources/bloobloom-logo.svg';
 import {NavButton} from "./nav-button/NavButton";
 import {SideNavigation} from "../side-navigation/SideNavigation";
-import {SideNavigationCategories} from "../side-navigation-categories/SideNavigationCategories";
 
 export function TopNavigation () {
     const [isSideNavOpen, setSideNavOpen] = useState(false);

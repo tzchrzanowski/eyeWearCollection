@@ -1,5 +1,6 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, {useContext} from 'react';
 import './CategoryButton.css';
+import {ButtonClickContext} from "helpers/ButtonClickProvider";
 
 interface Props {
     caption: string;
@@ -11,6 +12,14 @@ interface Props {
 }
 
 export function CategoryButton ({caption, hasSubSection, setSideNavCategoryType, setSideNavCategoryOpen, reversed, setSideNavOpenAction}: Props) {
+    const contextValue = useContext(ButtonClickContext);
+
+    const passContext = (caption: string) => {
+        if (contextValue) {
+            const {setClickedButton} = contextValue;
+            setClickedButton(caption);
+        }
+    }
 
     const onClickAction = () => {
         /*
@@ -25,6 +34,10 @@ export function CategoryButton ({caption, hasSubSection, setSideNavCategoryType,
          * If button is used as sub-category
          * Opens sub-category with selected glasses types
          */
+        if (!hasSubSection && !reversed) {
+            console.log("men or women clicked");
+            passContext(caption);
+        }
 
         /*
          * If button is used to close sub-category
