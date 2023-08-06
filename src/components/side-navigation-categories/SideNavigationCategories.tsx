@@ -32,8 +32,8 @@ export function SideNavigationCategories ({isOpen, categoryType, setSideNavCateg
                 setSideNavCategoryOpen={setSideNavCategoryOpen}
                 setSideNavOpenAction={setSideNavOpenAction}
             />
-            <CategoryButton caption={"SPECTACLES"} />
-            <CategoryButton caption={"SUNGLASSES"} />
+            <CategoryButton caption={"SPECTACLES"} genderType={categoryType} />
+            <CategoryButton caption={"SUNGLASSES"} genderType={categoryType}/>
         </div>
     )
 }

@@ -4,8 +4,6 @@ import {CollectionHeader} from "./collection-header/CollectionHeader";
 import {getSimpleCollection} from "data/apiRequests";
 import {Colours, Shapes, Gender, EyewearType} from "data/CustomTypes";
 import {ButtonClickContext} from "helpers/ButtonClickProvider";
-import {Simulate} from "react-dom/test-utils";
-import click = Simulate.click;
 
 export function CollectionMainView () {
     // setting up default params for initial eye-wear collection api call
@@ -26,23 +24,6 @@ export function CollectionMainView () {
         gender: genderState,
         eyewear_type: eyewearTypeState
     }
-
-    /*
-     * Initial apiCall triggered automatically when Home component renders
-     */
-    React.useEffect(() => {
-        dataFetch();
-    }, []);
-
-    const contextValue = useContext(ButtonClickContext);
-    if (!contextValue) {
-        return <div>Loading...</div>
-    }
-    const {clickedButton} = contextValue;
-    if(contextValue) {
-        console.log("clicked button: ", clickedButton)
-    }
-
     const dataFetch = async () => {
         try {
             const data = await getSimpleCollection(defaultSearchParams);
@@ -52,10 +33,27 @@ export function CollectionMainView () {
         }
     }
 
+    /*
+     * Initial apiCall triggered automatically when Home component renders
+     */
+    React.useEffect(() => {
+        dataFetch();
+    }, []);
+
+    /*
+     * Get values from context api saved by selecting category from side navigation
+     */
+    const contextValue = useContext(ButtonClickContext);
+    if (!contextValue) {
+        // safe check for context api
+        return <div>Loading...</div>
+    }
+    const {eyewearTypeContext, genderTypeSelectedContext} = contextValue;
+
     return (
         <div className={"collectionWrapper"}>
             <CollectionHeader type={eyewearTypeState} gender={genderState}/>
-            <p>last clicked button: {clickedButton}</p>
+            <p>last clicked button: {eyewearTypeContext} {genderTypeSelectedContext}</p>
         </div>
     )
 }

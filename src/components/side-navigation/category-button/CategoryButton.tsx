@@ -9,15 +9,16 @@ interface Props {
     setSideNavCategoryOpen?: React.Dispatch<React.SetStateAction<boolean>>;
     setSideNavOpenAction?: React.Dispatch<React.SetStateAction<boolean>>;
     reversed?: boolean;
+    genderType?: string;
 }
 
-export function CategoryButton ({caption, hasSubSection, setSideNavCategoryType, setSideNavCategoryOpen, reversed, setSideNavOpenAction}: Props) {
+export function CategoryButton ({caption, hasSubSection, setSideNavCategoryType, setSideNavCategoryOpen, reversed, setSideNavOpenAction, genderType}: Props) {
     const contextValue = useContext(ButtonClickContext);
-
-    const passContext = (caption: string) => {
-        if (contextValue) {
-            const {setClickedButton} = contextValue;
-            setClickedButton(caption);
+    const passEyewearTypeContext = () => {
+        if (contextValue && genderType) {
+            const {setEyewearTypeContext, setGenderTypeSelectedContext} = contextValue;
+            setEyewearTypeContext(caption);
+            setGenderTypeSelectedContext(genderType);
         }
     }
 
@@ -31,14 +32,13 @@ export function CategoryButton ({caption, hasSubSection, setSideNavCategoryType,
             setSideNavCategoryOpen(()=> {return true});
         }
         /*
-         * If button is used as sub-category
-         * Opens sub-category with selected glasses types
+         * If button is used as sub-category which means it contains the type of eyewear
+         * Uses contextApi to save selected choise of gender type of that sub category and eyewear type
+         * Context Api values can be read in components that are not direct descendants of this component
          */
-        if (!hasSubSection && !reversed) {
-            console.log("men or women clicked");
-            passContext(caption);
+        if (!hasSubSection && !reversed && genderType) {
+            passEyewearTypeContext();
         }
-
         /*
          * If button is used to close sub-category
          * Closes sub-category tab
