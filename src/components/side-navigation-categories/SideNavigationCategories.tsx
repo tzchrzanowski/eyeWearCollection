@@ -11,9 +11,19 @@ interface SideNavCatProps {
 }
 
 export function SideNavigationCategories ({isOpen, categoryType, setSideNavCategoryOpen, setSideNavOpenAction}: SideNavCatProps) {
+
+    const performCloseSideNavCategory = (val: boolean) => {
+        if (setSideNavCategoryOpen) {
+            setSideNavCategoryOpen((prevVal) => {
+                return val;
+            })
+        }
+    };
+
     return (
         <div
             className={(isOpen == true) ? "sideNavigationCategoriesWrapper sideNavigation sideNavigationOpen" : "sideNavigationCategoriesWrapper sideNavigation"}
+            onMouseLeave={()=> {performCloseSideNavCategory(false)}}
         >
             {categoryType}
             <CategoryButton
