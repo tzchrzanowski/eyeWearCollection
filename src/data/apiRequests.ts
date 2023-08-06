@@ -9,7 +9,7 @@ interface CollectionApiProps {
 
 export const getSpectaclesMen = async ({colour, frame_type, gender, eyewear_type}: CollectionApiProps) => {
     const data = await (
-        await fetch('https://staging-api.bloobloom.com/user/v1/sales_channels/website/collections/spectacles-men/' +
+        await fetch(`https://staging-api.bloobloom.com/user/v1/sales_channels/website/collections/${eyewear_type}-${gender}/` +
             'glasses?sort[type]=collection_relations_position' +
             '&sort[order]=asc' +
             '&filters[lens_variant_prescriptions][]=fashion' +
