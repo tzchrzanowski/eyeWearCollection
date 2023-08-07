@@ -9,15 +9,19 @@
 
 .collectionItemWrapper {
     width: 100%;
-    height: 100%;
+    height: 300px;
     display: flex;
     border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
     background: #f6f6f4;
+    border-left: 1px solid #000;
+}
+.collectionItemWrapper:last-child {
+    border-right: 1px solid #000;
 }
 
 .collectionItemCaption {
@@ -40,4 +44,11 @@
 .collectionItemCaptionName {
     font-weight: 500;
     margin-right: 5px;
+}
+
+.collectionItemImage {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: inline-block;
 }

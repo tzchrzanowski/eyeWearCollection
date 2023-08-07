@@ -23,3 +23,18 @@ export interface EyewearType {
     spectacles: "spectacles",
     sunglasses: "sunglasses"
 }
+
+interface GlassesMediaInterface {
+    position: number;
+    url: string;
+}
+
+interface GlassVariantsInterface {
+    media: GlassesMediaInterface[];
+}
+
+export interface GlassesInterface {
+    name: string;
+    glass_variants: GlassVariantsInterface[];
+}
+

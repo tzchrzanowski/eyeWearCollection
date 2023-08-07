@@ -4,6 +4,7 @@ import {getSimpleCollection} from "data/apiRequests";
 import {ButtonClickContext} from "helpers/ButtonClickProvider";
 import {CollectionFileters} from "./collection-filters/CollectionFileters";
 import {CollectionList} from "./collection-list/CollectionList";
+import {GlassesInterface} from "data/CustomTypes";
 
 export function CollectionMainView () {
     // setting up default params for initial eye-wear collection api call
@@ -11,12 +12,17 @@ export function CollectionMainView () {
     const [colourState, setColourState] = React.useState("black")
     const [genderState, setGenderState] = React.useState("women")
     const [eyewearTypeState, setEyewearTypeState] = React.useState("spectacles")
-    const [initialCollectionList, setInitialCollectionList] = React.useState([]);
+    const [initialCollectionList, setInitialCollectionList] = React.useState<GlassesInterface[]>([]);
+    const [loading, setLoading] = React.useState(false);
 
     const dataFetch = async () => {
         try {
-            const data = await getSimpleCollection({frame_type: shapeState, colour: colourState, gender: genderState, eyewear_type: eyewearTypeState});
-            setInitialCollectionList(data);
+            getSimpleCollection({frame_type: shapeState, colour: colourState, gender: genderState, eyewear_type: eyewearTypeState})
+                .then(data => {
+                    console.log("api triggered", genderState, eyewearTypeState)
+                    setInitialCollectionList(data.glasses);
+                    setLoading(false);
+                });
         } catch (error) {
             console.error('Error fetching data: ', error);
         }
@@ -34,15 +40,23 @@ export function CollectionMainView () {
     React.useEffect(() => {
         if(contextValue && eyewearTypeContext.length > 0 && genderTypeSelectedContext.length > 0) {
             setGenderState(genderTypeSelectedContext.toLowerCase());
-            setEyewearTypeState(eyewearTypeContext.toLowerCase())
+            setEyewearTypeState(eyewearTypeContext.toLowerCase());
         }
-        dataFetch();
     }, [eyewearTypeContext, genderTypeSelectedContext])
+
+    React.useEffect(() => {
+        setLoading(true);
+        dataFetch();
+    }, [genderState, eyewearTypeState])
 
     return (
         <div className={"collectionWrapper"}>
             <CollectionFileters gender={genderState} eyewearType={eyewearTypeState}/>
-            <CollectionList />
+            {loading === true ?
+                <div>Loading...</div>
+                :
+                <CollectionList collection={initialCollectionList}/>
+            }
         </div>
     )
 }
