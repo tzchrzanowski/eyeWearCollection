@@ -1,0 +1,30 @@
+.filtersWrapper {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-family: "Acumin Pro";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.filtersButtonWrapper {
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #000;
+    padding: 0 20px 0 20px;
+}
+
+.filtersButtonWrapper:last-child {
+    border-right: 1px solid #000;
+}

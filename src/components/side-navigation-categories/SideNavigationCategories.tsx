@@ -25,15 +25,14 @@ export function SideNavigationCategories ({isOpen, categoryType, setSideNavCateg
             className={(isOpen == true) ? "sideNavigationCategoriesWrapper sideNavigation sideNavigationOpen" : "sideNavigationCategoriesWrapper sideNavigation"}
             onMouseLeave={()=> {performCloseSideNavCategory(false)}}
         >
-            {categoryType}
             <CategoryButton
                 caption={"GO BACK"}
                 reversed={true}
                 setSideNavCategoryOpen={setSideNavCategoryOpen}
                 setSideNavOpenAction={setSideNavOpenAction}
             />
-            <CategoryButton caption={"SPECTACLES"} genderType={categoryType} />
-            <CategoryButton caption={"SUNGLASSES"} genderType={categoryType}/>
+            <CategoryButton caption={"SPECTACLES"} genderType={categoryType} setSideNavCategoryOpen={setSideNavCategoryOpen}/>
+            <CategoryButton caption={"SUNGLASSES"} genderType={categoryType} setSideNavCategoryOpen={setSideNavCategoryOpen}/>
         </div>
     )
 }

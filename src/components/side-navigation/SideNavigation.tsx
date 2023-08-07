@@ -1,8 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import './SideNavigation.css';
 import {CategoryButton} from "./category-button/CategoryButton";
-import {SideNavLinks} from "./side-nav-links/SideNavLinks";
-import {SideNavFooter} from "./side-nav-footer/SideNavFooter";
 import {SideNavigationCategories} from "../side-navigation-categories/SideNavigationCategories";
 
 interface SideNavProps {
@@ -51,8 +49,6 @@ export function SideNavigation ({isOpen, setSideNavOpenAction}: SideNavProps) {
                 />
                 <CategoryButton caption={"HOME TRY ON"} />
                 <CategoryButton caption={"FREE EYE TEST"} />
-                <SideNavLinks />
-                <SideNavFooter />
             </div>
         </>
     );

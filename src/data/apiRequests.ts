@@ -1,10 +1,8 @@
-import {Colours, Shapes, Gender, EyewearType} from "./CustomTypes";
-
 interface CollectionApiProps {
-    eyewear_type: keyof EyewearType,
-    gender: keyof Gender,
-    colour: keyof Colours,
-    frame_type: keyof Shapes
+    eyewear_type: string,
+    gender: string,
+    colour: string,
+    frame_type: string
 }
 
 export const getSimpleCollection = async ({colour, frame_type, gender, eyewear_type}: CollectionApiProps) => {

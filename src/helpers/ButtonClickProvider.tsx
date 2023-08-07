@@ -1,10 +1,10 @@
 import React, {createContext, useContext, useState, ReactNode} from "react";
 
 interface ButtonClickContextType {
-    eyewearTypeContext: string;
-    setEyewearTypeContext: React.Dispatch<React.SetStateAction<string>>;
     genderTypeSelectedContext: string;
     setGenderTypeSelectedContext: React.Dispatch<React.SetStateAction<string>>;
+    eyewearTypeContext: string;
+    setEyewearTypeContext: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface ButtonClickProviderProps {
@@ -14,12 +14,14 @@ interface ButtonClickProviderProps {
 export const ButtonClickContext = createContext<ButtonClickContextType | undefined> (undefined);
 
 export const ButtonClickProvider: React.FC<ButtonClickProviderProps> = ({ children }) => {
-    const [eyewearTypeContext, setEyewearTypeContext] = useState('');
     const [genderTypeSelectedContext, setGenderTypeSelectedContext] = useState('');
+    const [eyewearTypeContext, setEyewearTypeContext] = useState('');
 
     return (
-        <ButtonClickContext.Provider value={{ eyewearTypeContext, setEyewearTypeContext, genderTypeSelectedContext, setGenderTypeSelectedContext }}>
+        <ButtonClickContext.Provider value={{genderTypeSelectedContext, setGenderTypeSelectedContext, eyewearTypeContext, setEyewearTypeContext}}>
             {children}
         </ButtonClickContext.Provider>
     );
 };
+
+

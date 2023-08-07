@@ -36,8 +36,9 @@ export function CategoryButton ({caption, hasSubSection, setSideNavCategoryType,
          * Uses contextApi to save selected choise of gender type of that sub category and eyewear type
          * Context Api values can be read in components that are not direct descendants of this component
          */
-        if (!hasSubSection && !reversed && genderType) {
+        if (!hasSubSection && !reversed && genderType && setSideNavCategoryOpen) {
             passEyewearTypeContext();
+            setSideNavCategoryOpen(()=> {return false});
         }
         /*
          * If button is used to close sub-category

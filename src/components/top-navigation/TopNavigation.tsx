@@ -15,17 +15,10 @@ export function TopNavigation () {
             />
             <div className={"navButtons"}>
                 <NavButton name={"MENU"} passedAction={setSideNavOpen} />
-                <NavButton name={"FREE EYE TEST"}/>
-                <NavButton name={"ABOUT US"}/>
             </div>
             <a href={"/"} className={"navLogo"}>
                 <img src={BloobloomLogo} alt={"Bloobloom Logo"} className={"svgElement"} />
             </a>
-            <div className={"navButtons"}>
-                <NavButton name={"HELP"}/>
-                <NavButton name={"LOG IN"}/>
-                <NavButton name={"BAG (0)"}/>
-            </div>
         </div>
     )
 }
