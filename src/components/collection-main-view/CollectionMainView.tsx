@@ -8,8 +8,8 @@ import {GlassesInterface} from "data/CustomTypes";
 
 export function CollectionMainView () {
     // states used as api params:
-    const [shapeState, setshapeState] = React.useState("round");
-    const [colourState, setColourState] = React.useState("black");
+    const [shapeState, setShapeState] = React.useState(["round"]);
+    const [colourState, setColourState] = React.useState(["black"]);
     const [genderState, setGenderState] = React.useState("women");
     const [eyewearTypeState, setEyewearTypeState] = React.useState("spectacles");
     const [pageNumberState, setPageNumberState] = React.useState(1);
@@ -40,24 +40,22 @@ export function CollectionMainView () {
      * Responsible for fetching new data
      */
     const dataFetch = async () => {
-        if (lastLoadedPage != pageNumberState) {
-            try {
-                getSimpleCollection({frame_type: shapeState, colour: colourState, gender: genderState, eyewear_type: eyewearTypeState, page_number: pageNumberState})
-                    .then(data => {
-                        // set collection:
-                        const doubleTab = (initialCollectionList.length > 0) ? initialCollectionList : [];
-                        doubleTab[pageNumberState-1] = data.glasses;
-                        setInitialCollectionList(doubleTab);
+        try {
+            getSimpleCollection({frame_type: shapeState, colour: colourState, gender: genderState, eyewear_type: eyewearTypeState, page_number: pageNumberState})
+                .then(data => {
+                    // set collection:
+                    const doubleTab = (initialCollectionList.length > 0) ? initialCollectionList : [];
+                    doubleTab[pageNumberState-1] = data.glasses;
+                    setInitialCollectionList(doubleTab);
 
-                        // set state helpers:
-                        setTotalItemsFetched(prevState => prevState + data.glasses.length);
-                        setCollectionTotalCount(data.meta.total_count);
-                        setLastLoadedPage(pageNumberState);
-                        setLoading(false);
-                    });
-            } catch (error) {
-                console.error('Error fetching data: ', error);
-            }
+                    // set state helpers:
+                    setTotalItemsFetched(prevState => prevState + data.glasses.length);
+                    setCollectionTotalCount(data.meta.total_count);
+                    setLastLoadedPage(pageNumberState);
+                    setLoading(false);
+                });
+        } catch (error) {
+            console.error('Error fetching data: ', error);
         }
     }
 
@@ -91,6 +89,17 @@ export function CollectionMainView () {
     }, [genderState, eyewearTypeState, pageNumberState])
 
     /*
+     * This useEffect will be triggered by change of colour filter or shape filter
+     * It needs cleanup of data because it creates a whole new collection search criteria
+     */
+    React.useEffect(() => {
+        statesCleanup();
+        setLastLoadedPage(0);
+        setLoading(true);
+        dataFetch();
+    }, [colourState, shapeState]);
+
+    /*
      * Used to monitor scrolling over elements and to load more collection elements when user reached bottom element
      * Will be triggered at component startup
      */
@@ -102,14 +111,13 @@ export function CollectionMainView () {
         };
         const observer = new IntersectionObserver(handleObserver, options);
         if (sentinelRef.current) {
-            console.log('sentinelRef: ', sentinelRef.current);
             observer.observe(sentinelRef.current);
         }
-        // return () => {
-        //     if(sentinelRef.current) {
-        //         observer.unobserve(sentinelRef.current);
-        //     }
-        // };
+        return () => {
+            if(sentinelRef.current) {
+                observer.unobserve(sentinelRef.current);
+            }
+        };
     }, [collectionTotalCount]);
 
     const handleObserver = (entries: any) => {
@@ -123,7 +131,12 @@ export function CollectionMainView () {
 
     return (
         <div className={"collectionWrapper"}>
-            <CollectionFileters gender={genderState} eyewearType={eyewearTypeState}/>
+            <CollectionFileters
+                gender={genderState}
+                eyewearType={eyewearTypeState}
+                setColourState={setColourState}
+                setShapeState={setShapeState}
+            />
             {loading === true ?
                 <div>Loading...</div>
                 :

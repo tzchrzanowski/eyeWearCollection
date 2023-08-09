@@ -1,0 +1,74 @@
+.shapeFilterBarWrapper {
+    height: 0px;
+    max-height: 100px;
+    overflow: hidden;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    transition: all 625ms ease 0ms;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.shapeFilterBarHeight {
+    border-top: 1px solid;
+    height: 100px;
+}
+
+.shapeFilterCaption {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Acumin Pro";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    color: #000;
+    margin-top: 10px;
+}
+
+.shapeSelectionContainer {
+    display: flex;
+    width: 100%;
+    height: 120px;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: "Acumin Pro";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.shapeGrid {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 20% 0 20%;
+    justify-content: space-between;
+}
+
+.shapeBox {
+    cursor: pointer;
+    height: 24px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.selected {
+    text-decoration: underline;
+}

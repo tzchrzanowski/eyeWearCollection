@@ -1,23 +1,35 @@
 import React, {useState} from "react";
 import "./FiltersContainer.css";
 
-export function FiltersContainer () {
-    const [toggleKnob, setToggleKnob] = useState(true);
+interface FiltersContainerParams {
+    setColourFilterBarOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+    setShapeFilterBarOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-    function toggleKnobState() {
-        setToggleKnob((prevState) => {
-            return !prevState;
-        })
+export function FiltersContainer ({setColourFilterBarOpen, setShapeFilterBarOpen}: FiltersContainerParams) {
+
+    const toggleColourFilterBar = () => {
+        if (setColourFilterBarOpen) {
+            setColourFilterBarOpen(prevState => {return !prevState});
+        }
+    }
+
+    const toggleShapeFilterBar = () => {
+        if (setShapeFilterBarOpen) {
+            setShapeFilterBarOpen(prevState => {return !prevState});
+        }
     }
 
     return (
-        <div className={"filtersWrapper"}>
-            <div className={"filtersButtonWrapper"}>
-                <span>{"COLOUR"}</span>
+        <>
+            <div className={"filtersWrapper"}>
+                <div className={"filtersButtonWrapper"} onClick={toggleColourFilterBar}>
+                    <span>{"COLOUR"}</span>
+                </div>
+                <div className={"filtersButtonWrapper"} onClick={toggleShapeFilterBar}>
+                    <span>{"SHAPE"}</span>
+                </div>
             </div>
-            <div className={"filtersButtonWrapper"}>
-                <span>{"SHAPE"}</span>
-            </div>
-        </div>
+        </>
     )
 }
