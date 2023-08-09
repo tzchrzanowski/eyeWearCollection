@@ -52,21 +52,41 @@
     text-transform: capitalize;
 }
 
-.colourGrid {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin: 0 20% 0 20%;
-    justify-content: space-between;
+@media (min-width: 721px) {
+    .colourGrid {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin: 0 20% 0 20%;
+        justify-content: space-between;
+    }
+
+    .colourBox {
+        cursor: pointer;
+        height: 24px;
+        margin: 20px 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
 }
 
-.colourBox {
-    cursor: pointer;
-    height: 24px;
-    margin: 20px 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+@media (max-width: 720px) {
+    .colourGrid {
+        grid-template-columns: 33.33% 33.33% 33.33%;
+        display: grid;
+        width: 100%;
+        margin: 0 10% 0 10%;
+    }
+
+    .colourBox {
+        cursor: pointer;
+        height: 10px;
+        margin: 10px 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
 }
 
 .circleShapeWrapper {
