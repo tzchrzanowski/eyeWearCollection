@@ -1,11 +1,11 @@
-## Available Scripts
-Collection view, displaying items from endpoint, 
-includes:
-    - top navigation,
-    - sliding additional two top navigation filter bars    
-    - sliding two levels of side navigation,
-    - passing data via context api
-    - fetching data to display more items for the main view collection as page is scrolled down
+## features
+Collection view, displaying items from endpoint. 
+includes
+- top navigation,
+- sliding additional two top navigation filter bars    
+- sliding two levels of side navigation,
+- passing data via context api
+- fetching data to display more items for the main view collection as page is scrolled down
 
 ## Available Scripts
 
