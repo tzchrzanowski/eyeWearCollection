@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import './TopNavigation.css';
-import BloobloomLogo from 'resources/bloobloom-logo.svg';
+import SnowIcon from 'resources/snow-icon.svg';
 import {NavButton} from "./nav-button/NavButton";
 import {SideNavigation} from "../side-navigation/SideNavigation";
 
@@ -17,7 +17,7 @@ export function TopNavigation () {
                 <NavButton name={"MENU"} passedAction={setSideNavOpen} />
             </div>
             <a href={"/"} className={"navLogo"}>
-                <img src={BloobloomLogo} alt={"Bloobloom Logo"} className={"svgElement"} />
+                <img src={SnowIcon} alt={"Logo"} className={"svgElement"} />
             </a>
         </div>
     )
