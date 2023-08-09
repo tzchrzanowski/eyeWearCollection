@@ -19,7 +19,7 @@ export function CollectionList ({collection}: CollectionListProps) {
 
     return (
         <>
-            {(loading == true) ?
+            {(loading === true) ?
                 <div>Loading...</div>
                 :
                 <div>
@@ -30,7 +30,7 @@ export function CollectionList ({collection}: CollectionListProps) {
                                     <div className={"collectionItemCaption"}>
                                         <span className={"collectionItemCaptionName"}>{item.name}</span>
                                     </div>
-                                    <img className={"collectionItemImage"} src={item.glass_variants[0].media[0].url} alt={"image"} />
+                                    <img className={"collectionItemImage"} src={item.glass_variants[0].media[0].url} alt={"imgage missing"} />
                                 </div>
                             ))}
                         </div>

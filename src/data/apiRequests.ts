@@ -8,13 +8,13 @@ interface CollectionApiProps {
 
 export const getSimpleCollection = async ({colour, frame_type, gender, eyewear_type, page_number}: CollectionApiProps) => {
     let colours: string = "";
-    let coloursExtended = colour.forEach(color => {
+    colour.forEach(color => {
         color.toLowerCase();
         colours += `&filters[glass_variant_frame_variant_colour_tag_configuration_names][]=${color.toLowerCase()}`;
     });
 
     let shapes: string = "";
-    let shapesExtended = frame_type.forEach(shape =>{
+    frame_type.forEach(shape =>{
         shape.toLowerCase();
         shapes += `&filters[glass_variant_frame_variant_frame_tag_configuration_names][]=${shape.toLowerCase()}`
     });

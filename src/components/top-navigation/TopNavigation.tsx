@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import './TopNavigation.css';
 import SnowIcon from 'resources/snow-icon.svg';
 import {NavButton} from "./nav-button/NavButton";

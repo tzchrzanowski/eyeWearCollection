@@ -51,7 +51,8 @@ export function CollectionMainView () {
         } catch (error) {
             console.error('Error fetching data: ', error);
         }
-    }
+    };
+
     /*
      * Get values from context api saved by selecting category from side navigation
      */
@@ -69,7 +70,7 @@ export function CollectionMainView () {
             setGenderState(genderTypeSelectedContext.toLowerCase());
             setEyewearTypeState(eyewearTypeContext.toLowerCase());
         }
-    }, [eyewearTypeContext, genderTypeSelectedContext])
+    }, [contextValue, eyewearTypeContext, genderTypeSelectedContext])
     /*
      * This will perform fetch call, happens whenever listed parameters change.
      * Triggers when genderState, pageNumberState or eyewearTypeState gets updated...
@@ -78,6 +79,7 @@ export function CollectionMainView () {
         setLoading(true);
         dataFetch();
     }, [genderState, eyewearTypeState, pageNumberState])
+
     /*
      * This useEffect will be triggered by change of colour filter or shape filter
      * It needs cleanup of data because it creates a whole new collection search criteria
@@ -88,6 +90,7 @@ export function CollectionMainView () {
         setLoading(true);
         dataFetch();
     }, [colourState, shapeState]);
+
     /*
      * Used to monitor scrolling over elements and to load more collection elements when user reached bottom element
      * Will be triggered at component startup
@@ -102,20 +105,22 @@ export function CollectionMainView () {
         if (sentinelRef.current) {
             observer.observe(sentinelRef.current);
         }
-        return () => {
-            if(sentinelRef.current) {
-                observer.unobserve(sentinelRef.current);
-            }
-        };
+        // return () => {
+        //     if(sentinelRef.current) {
+        //         observer.unobserve(sentinelRef.current);
+        //     }
+        // };
     }, [collectionTotalCount]);
+
     const handleObserver = (entries: any) => {
         const entry = entries[0];
         if (entry.isIntersecting && totalItemsFetched < collectionTotalCount) {
-            if (pageNumberState + 1 == lastLoadedPage + 1) {
+            if (pageNumberState + 1 === lastLoadedPage + 1) {
                 setPageNumberState(pageNumberState + 1);
             }
         }
     };
+
     return (
         <div className={"collectionWrapper"}>
             <CollectionFileters

@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import './SideNavigation.css';
 import {CategoryButton} from "./category-button/CategoryButton";
 import {SideNavigationCategories} from "../side-navigation-categories/SideNavigationCategories";
@@ -32,7 +32,7 @@ export function SideNavigation ({isOpen, setSideNavOpenAction}: SideNavProps) {
                 setSideNavOpenAction={setSideNavOpenAction}
             />
             <div
-                className={(isOpen == true) ? "sideNavigation sideNavigationOpen" : "sideNavigation"}
+                className={(isOpen === true) ? "sideNavigation sideNavigationOpen" : "sideNavigation"}
                 onMouseLeave={()=> {performCloseSideNavAction(false)}}
             >
                 <CategoryButton

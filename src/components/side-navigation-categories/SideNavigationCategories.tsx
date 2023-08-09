@@ -22,7 +22,7 @@ export function SideNavigationCategories ({isOpen, categoryType, setSideNavCateg
 
     return (
         <div
-            className={((isOpen == true) ? "sideNavigationOpen " : "" ) + "sideNavigationCategoriesWrapper sideNavigation"}
+            className={((isOpen === true) ? "sideNavigationOpen " : "" ) + "sideNavigationCategoriesWrapper sideNavigation"}
             onMouseLeave={()=> {performCloseSideNavCategory(false)}}
         >
             <CategoryButton
